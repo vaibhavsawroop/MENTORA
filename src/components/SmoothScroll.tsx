@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -12,24 +12,26 @@ interface SmoothScrollProps {
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
   const location = useLocation()
+  const lenisRef = useRef<Lenis | null>(null)
 
+  // Initialize Lenis ONCE on mount for butter-smooth 60+ FPS performance
   useEffect(() => {
-    // Initialize Lenis smooth scroll
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth exponential ease
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.8,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
       infinite: false,
     })
 
-    // Synchronize Lenis scroll events with GSAP ScrollTrigger
+    lenisRef.current = lenis
+
+    // Sync Lenis scroll with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update)
 
-    // Add Lenis requestAnimationFrame loop into GSAP ticker for perfect 60+ FPS frame sync
     const updateTicker = (time: number) => {
       lenis.raf(time * 1000)
     }
@@ -37,12 +39,20 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     gsap.ticker.add(updateTicker)
     gsap.ticker.lagSmoothing(0)
 
-    // Reset scroll position on route change
-    lenis.scrollTo(0, { immediate: true })
-
     return () => {
       gsap.ticker.remove(updateTicker)
       lenis.destroy()
+      lenisRef.current = null
+    }
+  }, [])
+
+  // Handle route changes smoothly without re-creating Lenis
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true })
+      setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 50)
     }
   }, [location.pathname])
 

@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+export type AnimationMode = 'popup' | 'blur' | 'reveal' | 'skew' | 'bounce'
+
 interface TextPopProps {
   children?: React.ReactNode
   text?: string
@@ -11,7 +13,7 @@ interface TextPopProps {
   className?: string
   delay?: number
   stagger?: number
-  mode?: 'popup' | 'words' | 'fade'
+  mode?: AnimationMode
 }
 
 export function TextPop({
@@ -33,53 +35,138 @@ export function TextPop({
     if (!targets.length) return
 
     const ctx = gsap.context(() => {
-      if (mode === 'popup') {
-        gsap.fromTo(
-          targets,
-          {
-            y: 42,
-            opacity: 0,
-            scale: 0.9,
-            rotationX: -15,
-            transformOrigin: '0% 50% -20',
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            rotationX: 0,
-            duration: 0.75,
-            delay,
-            stagger,
-            ease: 'back.out(1.6)',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              toggleActions: 'play none none none',
+      switch (mode) {
+        case 'blur':
+          gsap.fromTo(
+            targets,
+            {
+              y: 26,
+              opacity: 0,
+              filter: 'blur(12px)',
+              force3D: true,
             },
-          }
-        )
-      } else {
-        gsap.fromTo(
-          targets,
-          {
-            y: 30,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.65,
-            delay,
-            stagger,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              toggleActions: 'play none none none',
+            {
+              y: 0,
+              opacity: 1,
+              filter: 'blur(0px)',
+              duration: 0.8,
+              delay,
+              stagger,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              },
+            }
+          )
+          break
+
+        case 'reveal':
+          gsap.fromTo(
+            targets,
+            {
+              yPercent: 110,
+              opacity: 0,
+              force3D: true,
             },
-          }
-        )
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.85,
+              delay,
+              stagger,
+              ease: 'power4.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              },
+            }
+          )
+          break
+
+        case 'skew':
+          gsap.fromTo(
+            targets,
+            {
+              y: 45,
+              skewY: 6,
+              opacity: 0,
+              force3D: true,
+            },
+            {
+              y: 0,
+              skewY: 0,
+              opacity: 1,
+              duration: 0.75,
+              delay,
+              stagger,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              },
+            }
+          )
+          break
+
+        case 'bounce':
+          gsap.fromTo(
+            targets,
+            {
+              y: 50,
+              scale: 0.65,
+              opacity: 0,
+              force3D: true,
+            },
+            {
+              y: 0,
+              scale: 1,
+              opacity: 1,
+              duration: 0.9,
+              delay,
+              stagger: stagger * 1.2,
+              ease: 'back.out(2.2)',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              },
+            }
+          )
+          break
+
+        case 'popup':
+        default:
+          gsap.fromTo(
+            targets,
+            {
+              y: 38,
+              opacity: 0,
+              scale: 0.9,
+              rotationX: -15,
+              transformOrigin: '0% 50% -20px',
+              force3D: true,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              rotationX: 0,
+              duration: 0.75,
+              delay,
+              stagger,
+              ease: 'back.out(1.6)',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              },
+            }
+          )
+          break
       }
     }, el)
 
@@ -103,7 +190,7 @@ export function TextPop({
     as,
     {
       ref: containerRef,
-      className: `pop-text-wrap ${className}`,
+      className: `pop-text-wrap pop-mode-${mode} ${className}`,
     },
     contentToRender
   )

@@ -2127,21 +2127,24 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* GSAP Pop-up Text Styles */
+/* Hardware accelerated GSAP Pop-up Text Styles */
 .pop-text-wrap {
   display: inline-block;
-  perspective: 600px;
+  perspective: 800px;
+  transform-style: preserve-3d;
 }
 
 .pop-word-box {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
+  line-height: inherit;
 }
 
 .pop-word {
   display: inline-block;
-  will-change: transform, opacity;
+  will-change: transform, opacity, filter;
   backface-visibility: hidden;
+  transform: translateZ(0);
 }
 

@@ -546,22 +546,22 @@ function Home() {
       </div>
     </section>
 
-    <section className="manifesto section-pad"><div className="manifesto-grid"><AnimateIn><span className="oversized-number">01</span></AnimateIn><AnimateIn><div><Eyebrow>Not another content pile</Eyebrow><TextPop as="h2">A good plan has a <em>pulse.</em></TextPop></div></AnimateIn><AnimateIn delay={.08}><p className="body-large">At MentoraX, mentorship is built around the difference between knowing what matters and actually knowing what to do next. The feeling is calm, exact, and personal.</p><ArrowLink to="/team">Why we built this</ArrowLink></AnimateIn></div></section>
+    <section className="manifesto section-pad"><div className="manifesto-grid"><AnimateIn><span className="oversized-number">01</span></AnimateIn><AnimateIn><div><Eyebrow>Not another content pile</Eyebrow><TextPop as="h2" mode="skew">A good plan has a <em>pulse.</em></TextPop></div></AnimateIn><AnimateIn delay={.08}><p className="body-large">At MentoraX, mentorship is built around the difference between knowing what matters and actually knowing what to do next. The feeling is calm, exact, and personal.</p><ArrowLink to="/team">Why we built this</ArrowLink></AnimateIn></div></section>
 
-    <section className="field-notes section-pad"><div className="section-head"><div><Eyebrow>The MentoraX field notes</Eyebrow><TextPop as="h2">Less static. More <em>signal.</em></TextPop></div><p>We have a bias for the few things that genuinely shift preparation forward.</p></div><div className="feature-list"><FeatureCard number="01" icon={<Compass />} title="A map you will use." text="Preparation becomes easier to trust when the next move is visible, and made for your actual week." /><FeatureCard number="02" icon={<MessageCircle />} title="A voice when you need one." text="A real mentoring relationship makes doubt smaller, faster than more content ever can." /><FeatureCard number="03" icon={<Target />} title="A rhythm that holds." text="The aim isn’t study intensity for a week. It’s a system that keeps you moving for the full arc." /></div></section>
+    <section className="field-notes section-pad"><div className="section-head"><div><Eyebrow>The MentoraX field notes</Eyebrow><TextPop as="h2" mode="blur">Less static. More <em>signal.</em></TextPop></div><p>We have a bias for the few things that genuinely shift preparation forward.</p></div><div className="feature-list"><FeatureCard number="01" icon={<Compass />} title="A map you will use." text="Preparation becomes easier to trust when the next move is visible, and made for your actual week." /><FeatureCard number="02" icon={<MessageCircle />} title="A voice when you need one." text="A real mentoring relationship makes doubt smaller, faster than more content ever can." /><FeatureCard number="03" icon={<Target />} title="A rhythm that holds." text="The aim isn’t study intensity for a week. It’s a system that keeps you moving for the full arc." /></div></section>
 
     <section className="way section-pad"><div className="way-top"><Eyebrow>How the work unfolds</Eyebrow><span className="tiny-kicker">A four-part sequence</span></div><div className="way-grid"><WayItem number="01" title="Orient" copy="Meet your current level with honesty and without drama." /><WayItem number="02" title="Build" copy="Turn a large ambition into a rhythm you can live with." /><WayItem number="03" title="Refine" copy="Use feedback to find the few gaps that actually matter." /><WayItem number="04" title="Perform" copy="Arrive for the exam with calm, strategy, and self-trust." /></div></section>
 
     <TestimonialsSection />
 
-    <section className="founders-section section-pad"><div className="founder-portrait-panel"><div className="founder-orbit"><span>MentoraX</span><i>✦</i><span>MentoraX</span><i>✦</i><span>MentoraX</span></div><div className="founder-initials">R <i>+</i> D</div><span className="rd-pun-label">Research &amp; Development</span><p>Managed personally by<br /><b>Raj &amp; Dipti</b></p></div><div className="founder-copy"><AnimateIn><Eyebrow>R+D — the real kind</Eyebrow><TextPop as="h2">Warmth is not the opposite of <em>rigour.</em></TextPop><p className="body-large">R+D at MentoraX means two things at once: Raj &amp; Dipti, and the Research &amp; Development mindset that IISER, IAT, and NEST are built on. We believe the best exam prep is also the best science education.</p><div className="founder-quote"><Quote size={21} /><p>"The aim is not to make a student busier. It's to help them become more certain."</p></div><ArrowLink to="/team">Meet the MentoraX team</ArrowLink></AnimateIn></div></section>
+    <section className="founders-section section-pad"><div className="founder-portrait-panel"><div className="founder-orbit"><span>MentoraX</span><i>✦</i><span>MentoraX</span><i>✦</i><span>MentoraX</span></div><div className="founder-initials">R <i>+</i> D</div><span className="rd-pun-label">Research &amp; Development</span><p>Managed personally by<br /><b>Raj &amp; Dipti</b></p></div><div className="founder-copy"><AnimateIn><Eyebrow>R+D — the real kind</Eyebrow><TextPop as="h2" mode="popup">Warmth is not the opposite of <em>rigour.</em></TextPop><p className="body-large">R+D at MentoraX means two things at once: Raj &amp; Dipti, and the Research &amp; Development mindset that IISER, IAT, and NEST are built on. We believe the best exam prep is also the best science education.</p><div className="founder-quote"><Quote size={21} /><p>"The aim is not to make a student busier. It's to help them become more certain."</p></div><ArrowLink to="/team">Meet the MentoraX team</ArrowLink></AnimateIn></div></section>
 
-    <section className="program-preview section-pad"><AnimateIn><div className="section-head"><div><Eyebrow>Find your level of support</Eyebrow><TextPop as="h2">Designed for a very real <em>journey.</em></TextPop></div><ArrowLink to="/mentorship">View the program</ArrowLink></div></AnimateIn><div className="plan-strip">{plans.map((plan, index) => <AnimateIn key={plan.name} delay={index * .06}>{plan.name === 'Foundation' || plan.name === 'Intensive' ? <Clouds className="plan-clouds" scale={1.1} speed={0.28} cover={0.12} density={1.35} shading={0.14} opacity={0.3} shadow={0.04} wind={0.45} windRadius={180} quality={0.55}><Tilt className="plan-card"><PlanCardContent plan={plan} /></Tilt></Clouds> : <Tilt className="plan-card plan-card-featured"><PlanCardContent plan={plan} /></Tilt>}</AnimateIn>)}</div></section>
+    <section className="program-preview section-pad"><AnimateIn><div className="section-head"><div><Eyebrow>Find your level of support</Eyebrow><TextPop as="h2" mode="bounce">Designed for a very real <em>journey.</em></TextPop></div><ArrowLink to="/mentorship">View the program</ArrowLink></div></AnimateIn><div className="plan-strip">{plans.map((plan, index) => <AnimateIn key={plan.name} delay={index * .06}>{plan.name === 'Foundation' || plan.name === 'Intensive' ? <Clouds className="plan-clouds" scale={1.1} speed={0.28} cover={0.12} density={1.35} shading={0.14} opacity={0.3} shadow={0.04} wind={0.45} windRadius={180} quality={0.55}><Tilt className="plan-card"><PlanCardContent plan={plan} /></Tilt></Clouds> : <Tilt className="plan-card plan-card-featured"><PlanCardContent plan={plan} /></Tilt>}</AnimateIn>)}</div></section>
 
     <section className="book-banner">
       <div>
         <span className="tiny-kicker">The MentoraX library</span>
-        <TextPop as="h2">Resources that stay <em>on your desk.</em></TextPop>
+        <TextPop as="h2" mode="blur">Resources that stay <em>on your desk.</em></TextPop>
         <p>Purpose-built books and revision editions are arriving here soon.</p>
         <ArrowLink to="/books">See the library</ArrowLink>
       </div>
@@ -585,7 +585,7 @@ function Home() {
       <div className="section-head">
         <div>
           <Eyebrow>Frequently asked questions</Eyebrow>
-          <TextPop as="h2">Questions we hear <em>often.</em></TextPop>
+          <TextPop as="h2" mode="skew">Questions we hear <em>often.</em></TextPop>
         </div>
         <p>Can't find your answer? <ArrowLink to="/contact">Ask us directly</ArrowLink></p>
       </div>
@@ -596,7 +596,7 @@ function Home() {
       <div className="closing-orb" aria-hidden="true">
         <Suspense fallback={null}><HeroScene /></Suspense>
       </div>
-      <AnimateIn><span className="closing-star">✦</span><h2>There is a version of preparation that feels like <em>possibility.</em></h2><p>Let's find the path that makes sense for you.</p><ArrowLink solid to="/contact">Start a conversation</ArrowLink></AnimateIn>
+      <AnimateIn><span className="closing-star">✦</span><TextPop as="h2" mode="popup">There is a version of preparation that feels like <em>possibility.</em></TextPop><p>Let's find the path that makes sense for you.</p><ArrowLink solid to="/contact">Start a conversation</ArrowLink></AnimateIn>
     </section>
   </>
 }
