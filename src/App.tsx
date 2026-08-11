@@ -273,11 +273,53 @@ function HeroShader() {
   )
 }
 
+function ThemeSwitch() {
+  const [dark, setDark] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return localStorage.getItem('mentorax-theme') === 'dark'
+  })
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
+    localStorage.setItem('mentorax-theme', dark ? 'dark' : 'light')
+  }, [dark])
+
+  return (
+    <label className="theme-switch" aria-label="Toggle dark mode">
+      <input
+        type="checkbox"
+        className="theme-switch__checkbox"
+        checked={dark}
+        onChange={() => setDark(!dark)}
+      />
+      <div className="theme-switch__container">
+        <div className="theme-switch__circle-container">
+          <div className="theme-switch__sun-moon-container">
+            <div className="theme-switch__moon">
+              <div className="theme-switch__spot" />
+              <div className="theme-switch__spot" />
+              <div className="theme-switch__spot" />
+            </div>
+          </div>
+        </div>
+        <div className="theme-switch__clouds">
+          <div className="theme-switch__clouds-inner" />
+        </div>
+        <div className="theme-switch__stars-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
+            <path fillRule="evenodd" clipRule="evenodd" d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.56379 136.996 7.56587 137 8.72727C137.004 7.56587 137.392 6.56379 138.169 5.71123C138.945 4.85867 139.889 4.40947 141 4.35447C139.889 4.29946 138.945 3.85027 138.169 3.00688C137.392 2.16349 137.004 1.16141 137 0C136.996 1.16141 136.607 2.16349 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1614 35 19C35.0044 20.1614 35.3925 21.1635 36.1687 22.0069C36.9449 22.8503 37.8886 23.2995 39 23.3545C37.8886 23.4095 36.9449 23.8587 36.1687 24.7112C35.3925 25.5638 35.0044 26.5659 35 27.7273C34.9956 26.5659 34.6075 25.5638 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM114 36.3545C115.111 36.2995 116.055 35.8503 116.831 35.0069C117.607 34.1635 117.996 33.1614 118 32C118.004 33.1614 118.392 34.1635 119.169 35.0069C119.945 35.8503 120.889 36.2995 122 36.3545C120.889 36.4095 119.945 36.8587 119.169 37.7112C118.392 38.5638 118.004 39.5659 118 40.7273C117.996 39.5659 117.607 38.5638 116.831 37.7112C116.055 36.8587 115.111 36.4095 114 36.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1614 4 32C4.00441 33.1614 4.39251 34.1635 5.16869 35.0069C5.94487 35.8503 6.88864 36.2995 8 36.3545C6.88864 36.4095 5.94487 36.8587 5.16869 37.7112C4.39251 38.5638 4.00441 39.5659 4 40.7273C3.99559 39.5659 3.6075 38.5638 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56 46.3545C57.1114 46.2995 58.0551 45.8503 58.8313 45.0069C59.6075 44.1635 59.9956 43.1614 60 42C60.0044 43.1614 60.3925 44.1635 61.1687 45.0069C61.9449 45.8503 62.8886 46.2995 64 46.3545C62.8886 46.4095 61.9449 46.8587 61.1687 47.7112C60.3925 48.5638 60.0044 49.5659 60 50.7273C59.9956 49.5659 59.6075 48.5638 58.8313 47.7112C58.0551 46.8587 57.1114 46.4095 56 46.3545Z" fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+    </label>
+  )
+}
+
 function Header() {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
   useEffect(() => setOpen(false), [pathname])
-  return <header className="site-header"><div className="header-inner"><Link className="wordmark" to="/"><Mark /><span>mentora<span className="wordmark-x">x</span></span></Link><nav className="desktop-nav" aria-label="Main navigation">{navItems.map(([label, to]) => <NavLink key={to} to={to}>{label}</NavLink>)}</nav><div className="header-actions"><Link className="header-contact" to="/contact">Start a conversation <ArrowUpRight size={14} /></Link><Link className="header-cta" to="/mentorship">Apply to MentoraX <ArrowRight size={15} /></Link><button className="menu-button" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button></div></div><AnimatePresence>{open && <motion.div className="mobile-menu" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .2 }}>{navItems.map(([label, to]) => <NavLink key={to} to={to}>{label}<ArrowUpRight size={17} /></NavLink>)}<Link to="/contact">Start a conversation <ArrowRight size={17} /></Link></motion.div>}</AnimatePresence></header>
+  return <header className="site-header"><div className="header-inner"><Link className="wordmark" to="/"><Mark /><span>mentora<span className="wordmark-x">x</span></span></Link><nav className="desktop-nav" aria-label="Main navigation">{navItems.map(([label, to]) => <NavLink key={to} to={to}>{label}</NavLink>)}</nav><div className="header-actions"><ThemeSwitch /><Link className="header-contact" to="/contact">Start a conversation <ArrowUpRight size={14} /></Link><Link className="header-cta" to="/mentorship">Apply to MentoraX <ArrowRight size={15} /></Link><button className="menu-button" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button></div></div><AnimatePresence>{open && <motion.div className="mobile-menu" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .2 }}>{navItems.map(([label, to]) => <NavLink key={to} to={to}>{label}<ArrowUpRight size={17} /></NavLink>)}<Link to="/contact">Start a conversation <ArrowRight size={17} /></Link></motion.div>}</AnimatePresence></header>
 }
 
 function Footer() {
