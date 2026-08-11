@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Replace mentorax.example with your production domain before launch -->
+  <url><loc>https://mentorax.example/</loc></url>
+  <url><loc>https://mentorax.example/mentorship</loc></url>
+  <url><loc>https://mentorax.example/books</loc></url>
+  <url><loc>https://mentorax.example/mentors</loc></url>
+  <url><loc>https://mentorax.example/team</loc></url>
+  <url><loc>https://mentorax.example/contact</loc></url>
+  <url><loc>https://mentorax.example/refund-policy</loc></url>
+  <url><loc>https://mentorax.example/privacy-policy</loc></url>
+  <url><loc>https://mentorax.example/terms</loc></url>
+</urlset>

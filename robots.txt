@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with the production domain before launch.
+Sitemap: https://mentorax.example/sitemap.xml
