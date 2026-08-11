@@ -1,9 +1,9 @@
 :root {
-  --ink: #12101e;
-  --ink-soft: #4a475d;
-  --line: rgba(18, 16, 30, .12);
-  --paper: #FAF8F3;
-  --paper-deep: #F0EDE4;
+  --ink: #0A0914;
+  --ink-soft: #423E56;
+  --line: rgba(10, 9, 20, .1);
+  --paper: #FFFFFF;
+  --paper-deep: #F8F9FA;
   --lilac: #7B68EE;
   --lilac-deep: #4F46E5;
   --lime: #D2F56C;
@@ -17,15 +17,15 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   /* Surface tokens for theme switching */
-  --header-bg: rgba(250, 248, 243, .62);
-  --header-border: rgba(255, 255, 255, .22);
-  --header-shadow: 0 1px 0 rgba(18, 16, 30, .055), 0 14px 48px rgba(18, 16, 30, .045), inset 0 1px 0 rgba(255, 255, 255, .75), inset 0 0 0 1px rgba(255, 255, 255, .18);
-  --card-bg: rgba(255, 255, 255, .72);
-  --card-border: rgba(18, 16, 30, .06);
-  --glass-white: rgba(255, 255, 255, .62);
-  --glass-white-strong: rgba(255, 255, 255, .85);
-  --text-on-dark: #fbf9f2;
-  --selection-text: var(--ink);
+  --header-bg: rgba(255, 255, 255, .84);
+  --header-border: rgba(10, 9, 20, .08);
+  --header-shadow: 0 1px 0 rgba(10, 9, 20, .04), 0 14px 48px rgba(10, 9, 20, .05), inset 0 1px 0 rgba(255, 255, 255, .9);
+  --card-bg: #FFFFFF;
+  --card-border: rgba(10, 9, 20, .08);
+  --glass-white: rgba(10, 9, 20, .04);
+  --glass-white-strong: rgba(10, 9, 20, .08);
+  --text-on-dark: #FFFFFF;
+  --selection-text: #0A0914;
   --selection-bg: var(--lime);
   color: var(--ink);
   background: var(--paper);
@@ -40,17 +40,17 @@
   --ink: #f0ede8;
   --ink-soft: #9e9ab0;
   --line: rgba(240, 237, 232, .1);
-  --paper: #0e0d14;
-  --paper-deep: #17161f;
-  --header-bg: rgba(14, 13, 20, .72);
+  --paper: #08070d;
+  --paper-deep: #100f1a;
+  --header-bg: rgba(8, 7, 13, .78);
   --header-border: rgba(255, 255, 255, .08);
   --header-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 14px 48px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .06), inset 0 0 0 1px rgba(255, 255, 255, .05);
-  --card-bg: rgba(23, 22, 31, .8);
+  --card-bg: rgba(16, 15, 26, .85);
   --card-border: rgba(255, 255, 255, .08);
   --glass-white: rgba(255, 255, 255, .08);
   --glass-white-strong: rgba(255, 255, 255, .12);
   --text-on-dark: #f0ede8;
-  --selection-text: #0e0d14;
+  --selection-text: #08070d;
   --selection-bg: var(--lime);
 }
 
@@ -190,9 +190,10 @@ em { font-family: var(--serif); font-weight: 400; letter-spacing: -.04em; }
 .hero-copy::before {
   content: none;
 }
-.hero-copy h1 { max-width: 690px; margin: 0; }
-.hero-copy .eyebrow { margin-bottom: 23px; }
-.hero-lede { max-width: 450px; margin: 29px 0 34px; color: var(--ink-soft); font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.55; }
+.hero-copy h1 { max-width: 690px; margin: 0; color: var(--ink); }
+.hero-copy .eyebrow { margin-bottom: 23px; color: var(--ink); font-weight: 700; }
+.hero-copy .eyebrow span { background: var(--ink); }
+.hero-lede { max-width: 470px; margin: 29px 0 34px; color: var(--ink); font-size: clamp(1.05rem, 1.4vw, 1.25rem); font-weight: 500; line-height: 1.55; }
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 26px; align-items: center; }
 
 /* IAT PYQ product-led homepage */
@@ -1903,7 +1904,7 @@ em { font-family: var(--serif); font-weight: 400; letter-spacing: -.04em; }
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #f8f7f4;
+  background: var(--paper);
 }
 
 /* Full, unmasked source video: it already contains the intended aurora and rocket. */
