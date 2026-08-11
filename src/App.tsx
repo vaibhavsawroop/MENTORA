@@ -280,8 +280,13 @@ function ThemeSwitch() {
   })
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
-    localStorage.setItem('mentorax-theme', dark ? 'dark' : 'light')
+    if (dark) {
+      document.documentElement.setAttribute('data-theme', 'dark')
+      localStorage.setItem('mentorax-theme', 'dark')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+      localStorage.setItem('mentorax-theme', 'light')
+    }
   }, [dark])
 
   return (
@@ -607,7 +612,13 @@ function Home() {
         <p>Purpose-built books and revision editions are arriving here soon.</p>
         <ArrowLink to="/books">See the library</ArrowLink>
       </div>
-      <div className="book-sculpture">
+      <motion.div
+        className="book-sculpture"
+        initial={{ opacity: 0, y: 48, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+      >
         <Link to="/books" className="book-shape b-one" aria-label="IAT book — see the library">
           IAT
           <span className="book-hover-label">View IAT guide</span>
@@ -620,7 +631,7 @@ function Home() {
           X
           <span className="book-hover-label">View all</span>
         </Link>
-      </div>
+      </motion.div>
     </section>
 
     <section className="faq-section section-pad">

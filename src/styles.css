@@ -2176,7 +2176,7 @@ html.lenis, html.lenis body {
 
 /* ========== Uiverse Sun/Moon Theme Switch ========== */
 .theme-switch {
-  --toggle-size: 16px;
+  --toggle-size: 10px;
   --container-width: 5.625em;
   --container-height: 2.5em;
   --container-radius: 6.25em;
@@ -2193,6 +2193,10 @@ html.lenis, html.lenis body {
   --back-clouds-color: #AACADF;
   --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
   --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0 4px;
 }
 
 .theme-switch, .theme-switch *, .theme-switch *::before, .theme-switch *::after {

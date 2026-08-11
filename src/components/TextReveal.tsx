@@ -16,6 +16,27 @@ interface TextPopProps {
   mode?: AnimationMode
 }
 
+function processChildren(children: React.ReactNode): React.ReactNode {
+  return React.Children.map(children, (child, index) => {
+    if (typeof child === 'string') {
+      return child.split(' ').map((word, i) => (
+        <span key={`${index}-${i}`} className="pop-word-box">
+          <span className="pop-word">{word}&nbsp;</span>
+        </span>
+      ))
+    }
+    if (React.isValidElement(child)) {
+      const props = child.props as { children?: React.ReactNode }
+      if (props && props.children) {
+        return React.cloneElement(child as React.ReactElement<{ children?: React.ReactNode }>, {
+          children: processChildren(props.children),
+        })
+      }
+    }
+    return child
+  })
+}
+
 export function TextPop({
   children,
   text,
@@ -171,20 +192,15 @@ export function TextPop({
     }, el)
 
     return () => ctx.revert()
-  }, [delay, stagger, mode, text])
+  }, [delay, stagger, mode, text, children])
 
-  // Extract raw string content if text parameter provided or string children
-  const rawContent = text || (typeof children === 'string' ? children : null)
-
-  const contentToRender = rawContent ? (
-    rawContent.split(' ').map((word, i) => (
-      <span key={i} className="pop-word-box">
-        <span className="pop-word">{word}&nbsp;</span>
-      </span>
-    ))
-  ) : (
-    children
-  )
+  const contentToRender = text
+    ? text.split(' ').map((word, i) => (
+        <span key={i} className="pop-word-box">
+          <span className="pop-word">{word}&nbsp;</span>
+        </span>
+      ))
+    : processChildren(children)
 
   return React.createElement(
     as,
