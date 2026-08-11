@@ -2105,3 +2105,43 @@ em { font-family: var(--serif); font-weight: 400; letter-spacing: -.04em; }
     margin-bottom: 28px;
   }
 }
+
+/* Lenis & GSAP Smooth Scroll Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* GSAP Pop-up Text Styles */
+.pop-text-wrap {
+  display: inline-block;
+  perspective: 600px;
+}
+
+.pop-word-box {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.pop-word {
+  display: inline-block;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
